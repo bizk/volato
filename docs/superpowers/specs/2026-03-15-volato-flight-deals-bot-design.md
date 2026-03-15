@@ -163,7 +163,6 @@ max_price = 850
 | `months` | int[] | Yes | Month numbers to search (1-12) |
 | `stay_days` | object | Yes | `{min, max}` trip duration range |
 | `max_price` | float | Yes | Maximum price threshold |
-| `filters` | object | No | Optional filters (future use) |
 
 ### Future Filters (Extensible)
 
@@ -357,6 +356,13 @@ WantedBy=multi-user.target
 - Both APIs fail: Log error, send Telegram alert about check failure
 - Telegram send failure: Retry 3 times with exponential backoff
 - Database errors: Log and exit with non-zero code
+- Rate limiting: `/check` command has a 1-hour cooldown to prevent API quota exhaustion
+
+## Data Retention
+
+- Price history: Delete records older than 90 days (cleanup runs during each check)
+- Sent deals: Delete records older than 7 days
+- API quota tracking: Simple in-memory counter reset on first check of each month
 
 ## Testing Strategy
 
