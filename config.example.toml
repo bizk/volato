@@ -1,0 +1,60 @@
+# Volato Configuration Example
+# Copy this file to ~/.config/volato/config.toml and fill in your values
+
+# Telegram Bot Settings
+# Create a bot via @BotFather and get your chat ID from @userinfobot
+[telegram]
+bot_token = "YOUR_BOT_TOKEN"
+chat_id = "YOUR_CHAT_ID"
+
+# API Credentials
+# At least one API must be configured
+
+# Kiwi/Tequila API - https://tequila.kiwi.com/
+[apis.kiwi]
+api_key = "YOUR_KIWI_API_KEY"
+
+# Amadeus API - https://developers.amadeus.com/
+[apis.amadeus]
+client_id = "YOUR_AMADEUS_CLIENT_ID"
+client_secret = "YOUR_AMADEUS_CLIENT_SECRET"
+
+# Default Settings
+[defaults]
+origin = "EZE"      # Buenos Aires Ezeiza (IATA code)
+currency = "USD"    # Currency for prices
+
+# Alert Settings
+[alerts]
+drop_threshold_percent = 20  # Alert when price drops 20% from average
+
+# Flight Searches
+# Add one [[searches]] block for each destination you want to monitor
+
+[[searches]]
+destination = "BCN"         # Barcelona
+months = ["6", "7", "8"]    # June, July, August
+max_price = 900             # Maximum price in USD
+
+[searches.stay_days]
+min = 10
+max = 14
+
+[[searches]]
+destination = "FCO"         # Rome
+origin = "AEP"              # Override: use Aeroparque instead of Ezeiza
+months = ["3", "4", "5"]    # March, April, May
+max_price = 850
+
+[searches.stay_days]
+min = 7
+max = 10
+
+[[searches]]
+destination = "MIA"         # Miami
+months = ["12", "1", "2"]   # December, January, February
+max_price = 600
+
+[searches.stay_days]
+min = 5
+max = 7
