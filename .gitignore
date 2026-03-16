@@ -1,0 +1,18 @@
+# Binary
+volato
+
+# Database
+*.db
+
+# Config with secrets (use config.example.toml as template)
+config.toml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
